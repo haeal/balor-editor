@@ -97,6 +97,9 @@ namespace BalorEditor.Views
 			TreePine=2,
 			TreeOak=3,
 			Farmland=4,
+			Burg,
+			Citadel,
+			Tent
 		}
 
 		//public int Height { get { return _worldViewData[Offset(Field.Height)]; } set { _worldViewData[Offset(Field.Height)] = (byte)value; } }
@@ -116,7 +119,7 @@ namespace BalorEditor.Views
 			{
 				Unknown0 = _worldViewData[Offset(Field.Unknown0)],
 				Density = _worldViewData[Offset(Field.Density)],
-				MaterialType = _worldViewData[Offset(Field.Density)],
+				MaterialType = _worldViewData[Offset(Field.MaterialType)],
 				OccupyingHero = _worldViewData[Offset(Field.OccupyingHero)],
 				Unknown1 = _worldViewData[Offset(Field.Unknown1)],
 				Unknown2 = _worldViewData[Offset(Field.Unknown2)],
@@ -132,5 +135,10 @@ namespace BalorEditor.Views
 		public int OccupyingHero;
 		public int Unknown1;
 		public int Unknown2;
+
+		public override string ToString()
+		{
+			return string.Format("Unknown0: {0} Density: {1} MaterialType: {2} OccupyingHero: {3} Unknown1: {4} Unknown2: {5}", Unknown0, Density, MaterialType, OccupyingHero, Unknown1, Unknown2);
+		}
 	}
 }

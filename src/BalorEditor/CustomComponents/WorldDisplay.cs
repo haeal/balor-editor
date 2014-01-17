@@ -109,14 +109,43 @@ namespace BalorEditor.CustomComponents
 		//Collide with whatever we are over and give feedback on the field.
 		private void WorldDisplay_MouseMove(object sender, MouseEventArgs e)
 		{
+			CellInfo toInvoke = null;
+
 			if (MouseOver == null)
 				return;
 
-			//Find out where the mouse is in regards to the overlay and return the info.
-			int cellSize = _cachedRegionImage.Width / WorldView.RegionMapDimensions;
-			int x = e.X / cellSize;
-			int y = e.Y / cellSize;
-			MouseOver.Invoke(this, _world.SelectTile(x, y).GetCellInfo());
+			try
+			{
+
+				if (_cachedRegionImage == null)
+					return;
+
+				//Find out where the mouse is in regards to the overlay and return the info.
+				int cellSize = _cachedRegionImage.Width / WorldView.RegionMapDimensions;
+				int xOffset = (Width - _cachedRegionImage.Width) / 2;
+				int yOffset = (Height - _cachedRegionImage.Height) / 2;
+
+				if (e.X < xOffset)
+					return;
+
+				if (e.Y < yOffset)
+					return;
+
+				int x = (e.X - xOffset) / cellSize;
+				int y = (e.Y - yOffset) / cellSize;
+
+				if (x >= WorldView.RegionMapDimensions)
+					return;
+
+				if (y >= WorldView.RegionMapDimensions)
+					return;
+
+				toInvoke = _world.SelectTile(x, y).GetCellInfo();
+			}
+			finally
+			{
+				MouseOver.Invoke(this, toInvoke);
+			}
 		}
 	}
 }

@@ -57,6 +57,8 @@
 			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
 			this.worldDisplay1 = new BalorEditor.CustomComponents.WorldDisplay();
 			this.isRegion = new BalorEditor.ItemSelector();
+			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -71,6 +73,7 @@
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
+			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -79,7 +82,7 @@
             this.fileToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(643, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(676, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -114,7 +117,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 24);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(643, 543);
+			this.tabControl1.Size = new System.Drawing.Size(676, 564);
 			this.tabControl1.TabIndex = 1;
 			// 
 			// tabPage1
@@ -383,27 +386,30 @@
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.statusStrip1);
 			this.tabPage2.Controls.Add(this.splitContainer1);
 			this.tabPage2.Controls.Add(this.isRegion);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(635, 517);
+			this.tabPage2.Size = new System.Drawing.Size(668, 538);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
 			// splitContainer1
 			// 
-			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer1.Location = new System.Drawing.Point(3, 33);
+			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.splitContainer1.Location = new System.Drawing.Point(3, 30);
 			this.splitContainer1.Name = "splitContainer1";
 			// 
 			// splitContainer1.Panel1
 			// 
 			this.splitContainer1.Panel1.Controls.Add(this.worldDisplay1);
-			this.splitContainer1.Size = new System.Drawing.Size(629, 481);
-			this.splitContainer1.SplitterDistance = 517;
+			this.splitContainer1.Size = new System.Drawing.Size(662, 480);
+			this.splitContainer1.SplitterDistance = 544;
 			this.splitContainer1.TabIndex = 2;
 			// 
 			// worldDisplay1
@@ -411,7 +417,7 @@
 			this.worldDisplay1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.worldDisplay1.Location = new System.Drawing.Point(0, 0);
 			this.worldDisplay1.Name = "worldDisplay1";
-			this.worldDisplay1.Size = new System.Drawing.Size(517, 481);
+			this.worldDisplay1.Size = new System.Drawing.Size(544, 480);
 			this.worldDisplay1.TabIndex = 0;
 			// 
 			// isRegion
@@ -420,15 +426,31 @@
 			this.isRegion.Dock = System.Windows.Forms.DockStyle.Top;
 			this.isRegion.Location = new System.Drawing.Point(3, 3);
 			this.isRegion.Name = "isRegion";
-			this.isRegion.Size = new System.Drawing.Size(629, 30);
+			this.isRegion.Size = new System.Drawing.Size(662, 30);
 			this.isRegion.TabIndex = 1;
 			this.isRegion.ItemSelectorIndexChanged += new BalorEditor.ItemSelector.ItemSelectorEventHandler(this.isRegion_ItemSelectorIndexChanged);
+			// 
+			// statusStrip1
+			// 
+			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+			this.statusStrip1.Location = new System.Drawing.Point(3, 513);
+			this.statusStrip1.Name = "statusStrip1";
+			this.statusStrip1.Size = new System.Drawing.Size(662, 22);
+			this.statusStrip1.TabIndex = 3;
+			this.statusStrip1.Text = "statusStrip1";
+			// 
+			// toolStripStatusLabel1
+			// 
+			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+			this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
+			this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(643, 567);
+			this.ClientSize = new System.Drawing.Size(676, 588);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
@@ -447,9 +469,12 @@
 			((System.ComponentModel.ISupportInitialize)(this.udDex)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.udLevel)).EndInit();
 			this.tabPage2.ResumeLayout(false);
+			this.tabPage2.PerformLayout();
 			this.splitContainer1.Panel1.ResumeLayout(false);
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
 			this.splitContainer1.ResumeLayout(false);
+			this.statusStrip1.ResumeLayout(false);
+			this.statusStrip1.PerformLayout();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -485,6 +510,8 @@
 		private CustomComponents.WorldDisplay worldDisplay1;
 		private System.Windows.Forms.SplitContainer splitContainer1;
 		private ItemSelector isRegion;
+		private System.Windows.Forms.StatusStrip statusStrip1;
+		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
     }
 }
 

@@ -35,7 +35,18 @@ namespace BalorEditor
 
 			_lastOpenedPath = dlg.SelectedPath;
 			_lastOpenedIndex = dlg.SelectedSaveGameIndex;
+
+			worldDisplay1.MouseOver += worldDisplay1_MouseOver;
+
 			LoadGameState();
+		}
+
+		void worldDisplay1_MouseOver(object sender, CellInfo info)
+		{
+			if (info == null)
+				toolStripStatusLabel1.Text = "";
+			else
+				toolStripStatusLabel1.Text = info.ToString();
 		}
 
 		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
