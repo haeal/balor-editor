@@ -19,31 +19,37 @@ namespace BalorEditor
 		}
 
 		private HeroView _heroesList;
-		private string _lastOpenedFile;
+		private string _lastOpenedPath;
+		private int _lastOpenedIndex;
 
 		private void openToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			OpenFileDialog dlg = new OpenFileDialog();
-			dlg.Filter = "KPHEROS*.dat|KPHEROS*.dat";
+			LoadSaveGameDialog dlg = new LoadSaveGameDialog();
 
 			if (dlg.ShowDialog() != DialogResult.OK)
 				return;
 
-			LoadGameState(dlg.FileName);
-			_lastOpenedFile = dlg.FileName;
+			_lastOpenedPath = dlg.SelectedPath;
+			_lastOpenedIndex = dlg.SelectedSaveGameIndex;
+			LoadGameState();
 		}
 
 		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			File.Move(_lastOpenedFile, _lastOpenedFile.Replace(".DAT", "-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".DAT"));
-			File.WriteAllBytes(_lastOpenedFile, _heroesList.GetData());
+			//Save out the heroes file.
+			string fullPath = Path.Combine(_lastOpenedPath, "KPHEROS" + _lastOpenedIndex + ".DAT");
+			File.Move(fullPath, fullPath.Replace(".DAT", "-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".DAT"));
+			File.WriteAllBytes(fullPath, _heroesList.GetData());
 		}
 
-		private void LoadGameState(string path)
+		private void LoadGameState()
 		{
-			byte[] data = File.ReadAllBytes(path);
+			//Load up the hero view.
+			byte[] data = File.ReadAllBytes(Path.Combine(_lastOpenedPath, "KPHEROS" + _lastOpenedIndex + ".DAT"));
 			_heroesList = new HeroView(data);
 			itemSelector1.Collection = _heroesList.GetHeroes().Select(x => new DataItem { Text = x.ToString() }).ToList();
+
+			//Load up the region view.
 		}
 
 		private void itemSelector1_ItemSelectorIndexChanged(object sender, int index)
