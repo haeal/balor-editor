@@ -50,11 +50,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="HeroView.cs" />
-    <Compile Include="ItemSelector.cs">
+    <Compile Include="Views\HeroView.cs" />
+    <Compile Include="CustomComponents\ItemSelector.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ItemSelector.Designer.cs">
+    <Compile Include="CustomComponents\ItemSelector.Designer.cs">
       <DependentUpon>ItemSelector.cs</DependentUpon>
     </Compile>
     <Compile Include="FileHandling\LoadSaveGameDialog.cs">
@@ -72,7 +72,7 @@
       <DependentUpon>Form1.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="ItemSelector.resx">
+    <EmbeddedResource Include="CustomComponents\ItemSelector.resx">
       <DependentUpon>ItemSelector.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
