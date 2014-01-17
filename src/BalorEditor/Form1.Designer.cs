@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
 			this.panel1 = new System.Windows.Forms.Panel();
@@ -52,7 +54,9 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.itemSelector1 = new BalorEditor.ItemSelector();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.worldDisplay1 = new BalorEditor.CustomComponents.WorldDisplay();
+			this.isRegion = new BalorEditor.ItemSelector();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -63,6 +67,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.udArms)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.udDex)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.udLevel)).BeginInit();
+			this.tabPage2.SuspendLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -71,7 +79,7 @@
             this.fileToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(414, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(643, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -87,9 +95,16 @@
 			// openToolStripMenuItem
 			// 
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
 			this.openToolStripMenuItem.Text = "Open";
 			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+			// 
+			// saveToolStripMenuItem
+			// 
+			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+			this.saveToolStripMenuItem.Text = "Save";
+			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
 			// tabControl1
 			// 
@@ -99,7 +114,7 @@
 			this.tabControl1.Location = new System.Drawing.Point(0, 24);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(414, 327);
+			this.tabControl1.Size = new System.Drawing.Size(643, 543);
 			this.tabControl1.TabIndex = 1;
 			// 
 			// tabPage1
@@ -109,7 +124,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(406, 301);
+			this.tabPage1.Size = new System.Drawing.Size(635, 517);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Heroes";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -135,7 +150,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(3, 33);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(400, 265);
+			this.panel1.Size = new System.Drawing.Size(629, 481);
 			this.panel1.TabIndex = 1;
 			// 
 			// btnMaxStats
@@ -362,32 +377,58 @@
 			this.itemSelector1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.itemSelector1.Location = new System.Drawing.Point(3, 3);
 			this.itemSelector1.Name = "itemSelector1";
-			this.itemSelector1.Size = new System.Drawing.Size(400, 30);
+			this.itemSelector1.Size = new System.Drawing.Size(629, 30);
 			this.itemSelector1.TabIndex = 0;
 			this.itemSelector1.ItemSelectorIndexChanged += new BalorEditor.ItemSelector.ItemSelectorEventHandler(this.itemSelector1_ItemSelectorIndexChanged);
 			// 
 			// tabPage2
 			// 
+			this.tabPage2.Controls.Add(this.splitContainer1);
+			this.tabPage2.Controls.Add(this.isRegion);
 			this.tabPage2.Location = new System.Drawing.Point(4, 22);
 			this.tabPage2.Name = "tabPage2";
 			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(406, 301);
+			this.tabPage2.Size = new System.Drawing.Size(635, 517);
 			this.tabPage2.TabIndex = 1;
 			this.tabPage2.Text = "tabPage2";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// saveToolStripMenuItem
+			// splitContainer1
 			// 
-			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-			this.saveToolStripMenuItem.Text = "Save";
-			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+			this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.splitContainer1.Location = new System.Drawing.Point(3, 33);
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.worldDisplay1);
+			this.splitContainer1.Size = new System.Drawing.Size(629, 481);
+			this.splitContainer1.SplitterDistance = 517;
+			this.splitContainer1.TabIndex = 2;
+			// 
+			// worldDisplay1
+			// 
+			this.worldDisplay1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.worldDisplay1.Location = new System.Drawing.Point(0, 0);
+			this.worldDisplay1.Name = "worldDisplay1";
+			this.worldDisplay1.Size = new System.Drawing.Size(517, 481);
+			this.worldDisplay1.TabIndex = 0;
+			// 
+			// isRegion
+			// 
+			this.isRegion.Collection = ((System.Collections.Generic.List<BalorEditor.DataItem>)(resources.GetObject("isRegion.Collection")));
+			this.isRegion.Dock = System.Windows.Forms.DockStyle.Top;
+			this.isRegion.Location = new System.Drawing.Point(3, 3);
+			this.isRegion.Name = "isRegion";
+			this.isRegion.Size = new System.Drawing.Size(629, 30);
+			this.isRegion.TabIndex = 1;
+			this.isRegion.ItemSelectorIndexChanged += new BalorEditor.ItemSelector.ItemSelectorEventHandler(this.isRegion_ItemSelectorIndexChanged);
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(414, 351);
+			this.ClientSize = new System.Drawing.Size(643, 567);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.menuStrip1);
 			this.MainMenuStrip = this.menuStrip1;
@@ -405,6 +446,10 @@
 			((System.ComponentModel.ISupportInitialize)(this.udArms)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.udDex)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.udLevel)).EndInit();
+			this.tabPage2.ResumeLayout(false);
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -437,6 +482,9 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Button btnMaxStats;
 		private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+		private CustomComponents.WorldDisplay worldDisplay1;
+		private System.Windows.Forms.SplitContainer splitContainer1;
+		private ItemSelector isRegion;
     }
 }
 

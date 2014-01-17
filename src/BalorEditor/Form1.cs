@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BalorEditor.FileHandling;
+using BalorEditor.Views;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +21,8 @@ namespace BalorEditor
 		}
 
 		private HeroView _heroesList;
+		private WorldView _worldView;
+
 		private string _lastOpenedPath;
 		private int _lastOpenedIndex;
 
@@ -50,6 +54,11 @@ namespace BalorEditor
 			itemSelector1.Collection = _heroesList.GetHeroes().Select(x => new DataItem { Text = x.ToString() }).ToList();
 
 			//Load up the region view.
+			data = File.ReadAllBytes(Path.Combine(_lastOpenedPath, "KPWORLD" + _lastOpenedIndex + ".DAT"));
+			_worldView = new WorldView(data);
+			worldDisplay1.World = _worldView;
+			isRegion.Collection = _worldView.GetRegions().Select(x => new DataItem { Text = x.ToString() }).ToList();
+			worldDisplay1.RedrawRegion();
 		}
 
 		private void itemSelector1_ItemSelectorIndexChanged(object sender, int index)
@@ -65,6 +74,12 @@ namespace BalorEditor
 
 			cbPlayerOwned.Checked = _heroesList.PlayerOwned;
 			udGroup.Value = _heroesList.PlayerGroup;
+		}
+
+		private void isRegion_ItemSelectorIndexChanged(object sender, int index)
+		{
+			_worldView.SelectRegion(index);
+			worldDisplay1.RedrawRegion();
 		}
 
 		private void btnMaxStats_Click(object sender, EventArgs e)
@@ -85,6 +100,5 @@ namespace BalorEditor
 
 			itemSelector1_ItemSelectorIndexChanged(null, selectedIndex);
 		}
-
 	}
 }

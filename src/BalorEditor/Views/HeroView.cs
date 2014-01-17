@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BalorEditor
+namespace BalorEditor.Views
 {
 	public class HeroView
 	{
@@ -41,7 +41,7 @@ namespace BalorEditor
 			return _heroOffset * HeroChunkSize + (int)f;
 		}
 
-		public enum Field
+		private enum Field
 		{
 			PlayerState = 4,
 			Level = 5,

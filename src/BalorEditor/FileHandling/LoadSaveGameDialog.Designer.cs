@@ -1,4 +1,4 @@
-﻿namespace BalorEditor
+﻿namespace BalorEditor.FileHandling
 {
 	partial class LoadSaveGameDialog
 	{

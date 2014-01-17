@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BalorEditor
+namespace BalorEditor.FileHandling
 {
 	public partial class LoadSaveGameDialog : Form
 	{
