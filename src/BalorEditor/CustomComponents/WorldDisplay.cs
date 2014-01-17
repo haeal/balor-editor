@@ -69,6 +69,18 @@ namespace BalorEditor.CustomComponents
 							case WorldView.Material.Farmland:
 								g.FillRectangle(Brushes.Yellow, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
 								break;
+							case WorldView.Material.Burg:
+								g.FillRectangle(Brushes.LightGray, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
+								g.DrawLine(Pens.Black, x * tileSize, y * tileSize, x * tileSize + tileSize - 1, y * tileSize + tileSize - 1);
+								break;
+							case WorldView.Material.Citadel:
+								g.FillRectangle(Brushes.BurlyWood, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
+								g.DrawLine(Pens.Black, x * tileSize, y * tileSize, x * tileSize + tileSize - 1, y * tileSize + tileSize - 1);
+								break;
+							case WorldView.Material.Tent:
+								g.FillRectangle(Brushes.LightYellow, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
+								g.DrawLine(Pens.Black, x * tileSize, y * tileSize, x * tileSize + tileSize - 1, y * tileSize + tileSize - 1);
+								break;
 						}
 
 						//Draw any people that may exist on that tile.
