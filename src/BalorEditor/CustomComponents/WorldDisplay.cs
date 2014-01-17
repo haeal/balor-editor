@@ -54,10 +54,7 @@ namespace BalorEditor.CustomComponents
 						switch (_world.MaterialType)
 						{
 							case WorldView.Material.Grassland:
-								if (_world.Density > 0)
-									g.FillRectangle(Brushes.Green, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
-								else
-									g.FillRectangle(Brushes.Blue, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
+								g.FillRectangle(Brushes.Green, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
 								break;
 							case WorldView.Material.Rock:
 								g.FillRectangle(Brushes.Gray, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
@@ -81,11 +78,23 @@ namespace BalorEditor.CustomComponents
 								g.FillRectangle(Brushes.LightYellow, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
 								g.DrawLine(Pens.Black, x * tileSize, y * tileSize, x * tileSize + tileSize - 1, y * tileSize + tileSize - 1);
 								break;
+							case WorldView.Material.Ocean:
+								g.FillRectangle(Brushes.Blue, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
+								break;
+							case WorldView.Material.River:
+								g.FillRectangle(Brushes.LightBlue, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
+								break;
+							case WorldView.Material.Shallows:
+								g.FillRectangle(Brushes.LightGreen, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
+								break;
 						}
 
 						//Draw any people that may exist on that tile.
 						if (_world.OccupyingHero != 0)
+						{
 							g.FillRectangle(Brushes.White, x * tileSize + tileSize / 4, y * tileSize + tileSize / 4, tileSize / 2, tileSize / 2);
+							g.DrawRectangle(Pens.Black, x * tileSize + tileSize / 4, y * tileSize + tileSize / 4, tileSize / 2, tileSize / 2);
+						}
 					}
 				}
 			}

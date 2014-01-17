@@ -99,12 +99,20 @@ namespace BalorEditor.Views
 			Farmland=4,
 			Burg,
 			Citadel,
-			Tent
+			Tent = 7,
+			River = 9,
+			Ocean = 10,
+			Shallows = 11,
 		}
 
 		//public int Height { get { return _worldViewData[Offset(Field.Height)]; } set { _worldViewData[Offset(Field.Height)] = (byte)value; } }
 		public int Density { get { return _worldViewData[Offset(Field.Density)]; } set { _worldViewData[Offset(Field.Density)] = (byte)value; } }
-		public Material MaterialType { get { return (Material)_worldViewData[Offset(Field.MaterialType)]; } set { _worldViewData[Offset(Field.MaterialType)] = (byte)value; } }
+		/// <summary>
+		/// Looks like a partial mask.
+		/// 0x10, and 0x20 look like height?
+		/// 0x0F appare to be actual terrain.
+		/// </summary>
+		public Material MaterialType { get { return (Material)(_worldViewData[Offset(Field.MaterialType)] & 0x0F); } set { _worldViewData[Offset(Field.MaterialType)] = (byte)value; } }
 		public int OccupyingHero { get { return _worldViewData[Offset(Field.OccupyingHero)]; } set { _worldViewData[Offset(Field.OccupyingHero)] = (byte)value; } }
 
 		public IEnumerable<string> GetRegions()
