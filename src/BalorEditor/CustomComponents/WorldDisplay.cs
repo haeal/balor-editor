@@ -17,6 +17,9 @@ namespace BalorEditor.CustomComponents
 		private WorldView _world;
 		public WorldView World { set { _world = value; _cachedRegionImage = null; WorldDisplay_SizeChanged(null, null); Refresh(); } }
 
+		public delegate void CellInfoEvent(object sender, CellInfo info);
+		public event CellInfoEvent MouseOver;
+
 		public WorldDisplay()
 		{
 			InitializeComponent();
@@ -50,20 +53,27 @@ namespace BalorEditor.CustomComponents
 						//Draw based on properties.
 						switch (_world.MaterialType)
 						{
-							case WorldView.Material.Ocean:
-								g.FillRectangle(Brushes.Blue, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
-								break;
 							case WorldView.Material.Grassland:
-								g.FillRectangle(Brushes.Yellow, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
+								if (_world.Density > 0)
+									g.FillRectangle(Brushes.Green, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
+								else
+									g.FillRectangle(Brushes.Blue, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
 								break;
 							case WorldView.Material.Rock:
 								g.FillRectangle(Brushes.Gray, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
 								break;
 							case WorldView.Material.TreeOak:
 							case WorldView.Material.TreePine:
-								g.FillRectangle(Brushes.Green, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
+								g.FillRectangle(Brushes.DarkGreen, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
+								break;
+							case WorldView.Material.Farmland:
+								g.FillRectangle(Brushes.Yellow, x * tileSize, y * tileSize, tileSize - 1, tileSize - 1);
 								break;
 						}
+
+						//Draw any people that may exist on that tile.
+						if (_world.OccupyingHero != 0)
+							g.FillRectangle(Brushes.White, x * tileSize + tileSize / 4, y * tileSize + tileSize / 4, tileSize / 2, tileSize / 2);
 					}
 				}
 			}
@@ -85,8 +95,8 @@ namespace BalorEditor.CustomComponents
 
 		private void WorldDisplay_SizeChanged(object sender, EventArgs e)
 		{
-			int width = Width / 18 * 18;
-			int height = Height / 18 * 18;
+			int width = Width / WorldView.RegionMapDimensions * WorldView.RegionMapDimensions;
+			int height = Height / WorldView.RegionMapDimensions * WorldView.RegionMapDimensions;
 			if (width > height)
 				width = height;
 			if (height > width)
@@ -94,6 +104,19 @@ namespace BalorEditor.CustomComponents
 
 			if (_cachedRegionImage == null || width != _cachedRegionImage.Width || height != _cachedRegionImage.Height)
 				_cachedRegionImage = DrawBitmap(width, height);
+		}
+
+		//Collide with whatever we are over and give feedback on the field.
+		private void WorldDisplay_MouseMove(object sender, MouseEventArgs e)
+		{
+			if (MouseOver == null)
+				return;
+
+			//Find out where the mouse is in regards to the overlay and return the info.
+			int cellSize = _cachedRegionImage.Width / WorldView.RegionMapDimensions;
+			int x = e.X / cellSize;
+			int y = e.Y / cellSize;
+			MouseOver.Invoke(this, _world.SelectTile(x, y).GetCellInfo());
 		}
 	}
 }

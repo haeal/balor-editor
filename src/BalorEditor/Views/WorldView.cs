@@ -57,32 +57,51 @@ namespace BalorEditor.Views
 			return this;
 		}
 
+		/// <summary>
+		/// The values are not just blocks of regions tagged onto each other.  Each region is grouped into 6, and accessing the xth in the yth row
+		/// has to go across all 6 regions before going to the second line.
+		/// </summary>
+		/// <param name="f"></param>
+		/// <returns></returns>
 		private int Offset(Field f)
 		{
-			return _currentlySelectedRegion * RegionSize + _nsOffset * RegionMapDimensions * BytesPerTile + _ewOffset * BytesPerTile + (int)f;
+			const int RegionsPerBlock = 6;
+			int regionBlock = _currentlySelectedRegion / RegionsPerBlock;
+			int offset = regionBlock * RegionSize * RegionsPerBlock; //Gets us into the right region block.
+			//Get the yth row.
+			offset += RegionMapDimensions * BytesPerTile * _nsOffset * RegionsPerBlock;
+			//Get the xth region.
+			offset += _currentlySelectedRegion % RegionsPerBlock * RegionMapDimensions * BytesPerTile;
+			//Now get the actual field.
+			offset += _ewOffset * BytesPerTile + (int)f;
+
+			return offset;
+			//return _currentlySelectedRegion * RegionSize + _nsOffset * RegionMapDimensions * BytesPerTile + _ewOffset * BytesPerTile + (int)f;
 		}
 
 		private enum Field
 		{
-			Height, //? Maybe???
-			NotSure1,
-			Density,
-			MaterialType,
-			OccupyingHero
+			Unknown0 = 0,
+			Density =1,
+			MaterialType =2,
+			OccupyingHero=3,
+			Unknown1=4,
+			Unknown2=5
+
 		}
 
 		public enum Material
 		{
-			Ocean,
-			Grassland,
-			Rock,
-			TreePine,
-			TreeOak,
+			Grassland = 0,
+			Rock=1,
+			TreePine=2,
+			TreeOak=3,
+			Farmland=4,
 		}
 
-		public int Height { get { return _worldViewData[Offset(Field.Height)]; } set { _worldViewData[Offset(Field.Height)] = (byte)value; } }
+		//public int Height { get { return _worldViewData[Offset(Field.Height)]; } set { _worldViewData[Offset(Field.Height)] = (byte)value; } }
 		public int Density { get { return _worldViewData[Offset(Field.Density)]; } set { _worldViewData[Offset(Field.Density)] = (byte)value; } }
-		public Material MaterialType { get { return (Material)_worldViewData[Offset(Field.Density)]; } set { _worldViewData[Offset(Field.Density)] = (byte)value; } }
+		public Material MaterialType { get { return (Material)_worldViewData[Offset(Field.MaterialType)]; } set { _worldViewData[Offset(Field.MaterialType)] = (byte)value; } }
 		public int OccupyingHero { get { return _worldViewData[Offset(Field.OccupyingHero)]; } set { _worldViewData[Offset(Field.OccupyingHero)] = (byte)value; } }
 
 		public IEnumerable<string> GetRegions()
@@ -90,5 +109,28 @@ namespace BalorEditor.Views
 			for (int i = 1; i <= TotalRegionCount; i++)
 				yield return "Region " + i;
 		}
+
+		public CellInfo GetCellInfo()
+		{
+			return new CellInfo
+			{
+				Unknown0 = _worldViewData[Offset(Field.Unknown0)],
+				Density = _worldViewData[Offset(Field.Density)],
+				MaterialType = _worldViewData[Offset(Field.Density)],
+				OccupyingHero = _worldViewData[Offset(Field.OccupyingHero)],
+				Unknown1 = _worldViewData[Offset(Field.Unknown1)],
+				Unknown2 = _worldViewData[Offset(Field.Unknown2)],
+			};
+		}
+	}
+
+	public class CellInfo
+	{
+		public int Unknown0;
+		public int Density;
+		public int MaterialType;
+		public int OccupyingHero;
+		public int Unknown1;
+		public int Unknown2;
 	}
 }
