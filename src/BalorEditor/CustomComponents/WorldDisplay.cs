@@ -90,7 +90,7 @@ namespace BalorEditor.CustomComponents
 						}
 
 						//Draw any people that may exist on that tile.
-						if (_world.OccupyingHero != 0)
+						if (_world.OccupyingHero < 158)
 						{
 							g.FillRectangle(Brushes.White, x * tileSize + tileSize / 4, y * tileSize + tileSize / 4, tileSize / 2, tileSize / 2);
 							g.DrawRectangle(Pens.Black, x * tileSize + tileSize / 4, y * tileSize + tileSize / 4, tileSize / 2, tileSize / 2);

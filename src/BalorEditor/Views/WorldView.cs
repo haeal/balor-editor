@@ -81,22 +81,21 @@ namespace BalorEditor.Views
 
 		private enum Field
 		{
-			Unknown0 = 0,
-			Density =1,
-			MaterialType =2,
-			OccupyingHero=3,
-			Unknown1=4,
-			Unknown2=5
-
+			Unknown0 = 0, //Possibly sprite?
+			Density = 1,
+			MaterialType = 2,
+			Unknown1 = 3,
+			Unknown2 = 4,
+			OccupyingHero = 5,
 		}
 
 		public enum Material
 		{
 			Grassland = 0,
-			Rock=1,
-			TreePine=2,
-			TreeOak=3,
-			Farmland=4,
+			Rock = 1,
+			TreePine = 2,
+			TreeOak = 3,
+			Farmland = 4,
 			Burg,
 			Citadel,
 			Tent = 7,
@@ -140,13 +139,13 @@ namespace BalorEditor.Views
 		public int Unknown0;
 		public int Density;
 		public int MaterialType;
-		public int OccupyingHero;
 		public int Unknown1;
 		public int Unknown2;
+		public int OccupyingHero;
 
 		public override string ToString()
 		{
-			return string.Format("Unknown0: {0} Density: {1} MaterialType: {2} OccupyingHero: {3} Unknown1: {4} Unknown2: {5}", Unknown0, Density, MaterialType, OccupyingHero, Unknown1, Unknown2);
+			return string.Format("Unknown0: {0} Density: {1} MaterialType: {2} Unknown1: {3} Unknown2: {4} OccupyingHero: {5}", Unknown0, Density, MaterialType, Unknown1, Unknown2, OccupyingHero);
 		}
 	}
 }
