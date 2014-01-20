@@ -20,6 +20,9 @@ namespace BalorEditor.CustomComponents
 		public delegate void CellInfoEvent(object sender, CellInfo info);
 		public event CellInfoEvent MouseOver;
 
+		private PointInfo _selectedPoint;
+		public WorldView.Material PaintMaterial = WorldView.Material.Grassland;
+
 		public WorldDisplay()
 		{
 			InitializeComponent();
@@ -130,6 +133,17 @@ namespace BalorEditor.CustomComponents
 		//Collide with whatever we are over and give feedback on the field.
 		private void WorldDisplay_MouseMove(object sender, MouseEventArgs e)
 		{
+			int mouseX = e.X;
+			int mouseY = e.Y;
+			if (_selectedPoint != null)
+			{
+				mouseX = _selectedPoint.OriginalMouseX;
+				mouseY = _selectedPoint.OriginalMouseY;
+
+				//Get the difference between the current mouseX and the last one, divide by 4, and set the density to a max of 47.
+				_world.Density = Math.Min(47, Math.Max(0, (e.X - _selectedPoint.OriginalMouseX) / 4));
+			}
+
 			CellInfo toInvoke = null;
 
 			if (MouseOver == null)
@@ -137,7 +151,6 @@ namespace BalorEditor.CustomComponents
 
 			try
 			{
-
 				if (_cachedRegionImage == null)
 					return;
 
@@ -146,14 +159,14 @@ namespace BalorEditor.CustomComponents
 				int xOffset = (Width - _cachedRegionImage.Width) / 2;
 				int yOffset = (Height - _cachedRegionImage.Height) / 2;
 
-				if (e.X < xOffset)
+				if (mouseX < xOffset)
 					return;
 
-				if (e.Y < yOffset)
+				if (mouseY < yOffset)
 					return;
 
-				int x = (e.X - xOffset) / cellSize;
-				int y = (e.Y - yOffset) / cellSize;
+				int x = (mouseX - xOffset) / cellSize;
+				int y = (mouseY - yOffset) / cellSize;
 
 				if (x >= WorldView.RegionMapDimensions)
 					return;
@@ -168,5 +181,61 @@ namespace BalorEditor.CustomComponents
 				MouseOver.Invoke(this, toInvoke);
 			}
 		}
+
+		private void WorldDisplay_MouseDown(object sender, MouseEventArgs e)
+		{
+			if (_cachedRegionImage == null)
+				return;
+
+			//Find out where the mouse is in regards to the overlay and return the info.
+			int cellSize = _cachedRegionImage.Width / WorldView.RegionMapDimensions;
+			int xOffset = (Width - _cachedRegionImage.Width) / 2;
+			int yOffset = (Height - _cachedRegionImage.Height) / 2;
+
+			if (e.X < xOffset)
+				return;
+
+			if (e.Y < yOffset)
+				return;
+
+			int x = (e.X - xOffset) / cellSize;
+			int y = (e.Y - yOffset) / cellSize;
+
+			if (x >= WorldView.RegionMapDimensions)
+				return;
+
+			if (y >= WorldView.RegionMapDimensions)
+				return;
+
+			if (e.Button == System.Windows.Forms.MouseButtons.Left)
+			{
+				_world.SelectTile(x, y);
+				_selectedPoint = new PointInfo { X = x, Y = y, OriginalMouseX = e.X, OriginalMouseY = e.Y };
+			}
+
+			if (e.Button == System.Windows.Forms.MouseButtons.Right)
+			{
+				_world.SelectTile(x, y).MaterialType = PaintMaterial;
+				if (PaintMaterial == WorldView.Material.Ocean)
+					_world.TileImage = 0;
+				else
+					_world.TileImage = 36;
+				//Repaint the landscape as we have changed what it looks like.
+				_cachedRegionImage = null; WorldDisplay_SizeChanged(null, null); Refresh();
+			}
+		}
+
+		private void WorldDisplay_MouseUp(object sender, MouseEventArgs e)
+		{
+			_selectedPoint = null;
+		}
+	}
+
+	public class PointInfo
+	{
+		public int X;
+		public int Y;
+		public int OriginalMouseX;
+		public int OriginalMouseY;
 	}
 }

@@ -37,7 +37,9 @@
 			this.Name = "WorldDisplay";
 			this.Size = new System.Drawing.Size(432, 432);
 			this.SizeChanged += new System.EventHandler(this.WorldDisplay_SizeChanged);
+			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.WorldDisplay_MouseDown);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.WorldDisplay_MouseMove);
+			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.WorldDisplay_MouseUp);
 			this.ResumeLayout(false);
 
 		}

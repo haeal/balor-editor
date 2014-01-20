@@ -55,6 +55,11 @@ namespace BalorEditor
 			string fullPath = Path.Combine(_lastOpenedPath, "KPHEROS" + _lastOpenedIndex + ".DAT");
 			File.Move(fullPath, fullPath.Replace(".DAT", "-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".DAT"));
 			File.WriteAllBytes(fullPath, _heroesList.GetData());
+
+			//Save out the world file.
+			fullPath = Path.Combine(_lastOpenedPath, "KPWORLD" + _lastOpenedIndex + ".DAT");
+			File.Move(fullPath, fullPath.Replace(".DAT", "-" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".DAT"));
+			File.WriteAllBytes(fullPath, _worldView.GetData());
 		}
 
 		private void LoadGameState()
@@ -110,6 +115,33 @@ namespace BalorEditor
 				selectedIndex = list[0].Idx;
 
 			itemSelector1_ItemSelectorIndexChanged(null, selectedIndex);
+		}
+
+		private void rbMaterialSelected(object sender, EventArgs e)
+		{
+			RadioButton rb = (RadioButton)sender;
+			if(rb.Checked)
+				worldDisplay1.PaintMaterial = (WorldView.Material)rb.TabIndex;
+		}
+
+		private void btnResetHeights_Click(object sender, EventArgs e)
+		{
+			for(int y = 0; y < WorldView.RegionMapDimensions; y++)
+			{
+				for (int x = 0; x < WorldView.RegionMapDimensions; x++)
+				{
+					_worldView.SelectTile(x, y);
+					//Ignore the buildings or rivers/shallows.
+					if (_worldView.MaterialType == WorldView.Material.Burg || _worldView.MaterialType == WorldView.Material.Citadel || _worldView.MaterialType == WorldView.Material.Citadel ||
+						_worldView.MaterialType == WorldView.Material.River || _worldView.MaterialType == WorldView.Material.Shallows)
+						continue;
+					
+					if (_worldView.MaterialType == WorldView.Material.Ocean)
+						_worldView.TileImage = 0;
+					else
+						_worldView.TileImage = 36;
+				}
+			}
 		}
 	}
 }

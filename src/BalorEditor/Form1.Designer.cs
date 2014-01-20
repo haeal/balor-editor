@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -54,11 +53,24 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.itemSelector1 = new BalorEditor.ItemSelector();
 			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-			this.worldDisplay1 = new BalorEditor.CustomComponents.WorldDisplay();
-			this.isRegion = new BalorEditor.ItemSelector();
 			this.statusStrip1 = new System.Windows.Forms.StatusStrip();
 			this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+			this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+			this.worldDisplay1 = new BalorEditor.CustomComponents.WorldDisplay();
+			this.btnResetHeights = new System.Windows.Forms.Button();
+			this.rbShallows = new System.Windows.Forms.RadioButton();
+			this.rbTent = new System.Windows.Forms.RadioButton();
+			this.rbOcean = new System.Windows.Forms.RadioButton();
+			this.rbCitadel = new System.Windows.Forms.RadioButton();
+			this.rbRiver = new System.Windows.Forms.RadioButton();
+			this.rbBurg = new System.Windows.Forms.RadioButton();
+			this.rbUnknown = new System.Windows.Forms.RadioButton();
+			this.rbFarmland = new System.Windows.Forms.RadioButton();
+			this.rbOak = new System.Windows.Forms.RadioButton();
+			this.rbPine = new System.Windows.Forms.RadioButton();
+			this.rbRock = new System.Windows.Forms.RadioButton();
+			this.rbGrassland = new System.Windows.Forms.RadioButton();
+			this.isRegion = new BalorEditor.ItemSelector();
 			this.menuStrip1.SuspendLayout();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
@@ -70,10 +82,11 @@
 			((System.ComponentModel.ISupportInitialize)(this.udDex)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.udLevel)).BeginInit();
 			this.tabPage2.SuspendLayout();
+			this.statusStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
 			this.splitContainer1.Panel1.SuspendLayout();
+			this.splitContainer1.Panel2.SuspendLayout();
 			this.splitContainer1.SuspendLayout();
-			this.statusStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// menuStrip1
@@ -127,7 +140,7 @@
 			this.tabPage1.Location = new System.Drawing.Point(4, 22);
 			this.tabPage1.Name = "tabPage1";
 			this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage1.Size = new System.Drawing.Size(635, 517);
+			this.tabPage1.Size = new System.Drawing.Size(668, 538);
 			this.tabPage1.TabIndex = 0;
 			this.tabPage1.Text = "Heroes";
 			this.tabPage1.UseVisualStyleBackColor = true;
@@ -153,7 +166,7 @@
 			this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.panel1.Location = new System.Drawing.Point(3, 33);
 			this.panel1.Name = "panel1";
-			this.panel1.Size = new System.Drawing.Size(629, 481);
+			this.panel1.Size = new System.Drawing.Size(662, 502);
 			this.panel1.TabIndex = 1;
 			// 
 			// btnMaxStats
@@ -380,7 +393,7 @@
 			this.itemSelector1.Dock = System.Windows.Forms.DockStyle.Top;
 			this.itemSelector1.Location = new System.Drawing.Point(3, 3);
 			this.itemSelector1.Name = "itemSelector1";
-			this.itemSelector1.Size = new System.Drawing.Size(629, 30);
+			this.itemSelector1.Size = new System.Drawing.Size(662, 30);
 			this.itemSelector1.TabIndex = 0;
 			this.itemSelector1.ItemSelectorIndexChanged += new BalorEditor.ItemSelector.ItemSelectorEventHandler(this.itemSelector1_ItemSelectorIndexChanged);
 			// 
@@ -397,39 +410,6 @@
 			this.tabPage2.Text = "Regions";
 			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
-			// splitContainer1
-			// 
-			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.splitContainer1.Location = new System.Drawing.Point(3, 30);
-			this.splitContainer1.Name = "splitContainer1";
-			// 
-			// splitContainer1.Panel1
-			// 
-			this.splitContainer1.Panel1.Controls.Add(this.worldDisplay1);
-			this.splitContainer1.Size = new System.Drawing.Size(662, 480);
-			this.splitContainer1.SplitterDistance = 544;
-			this.splitContainer1.TabIndex = 2;
-			// 
-			// worldDisplay1
-			// 
-			this.worldDisplay1.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.worldDisplay1.Location = new System.Drawing.Point(0, 0);
-			this.worldDisplay1.Name = "worldDisplay1";
-			this.worldDisplay1.Size = new System.Drawing.Size(544, 480);
-			this.worldDisplay1.TabIndex = 0;
-			// 
-			// isRegion
-			// 
-			this.isRegion.Collection = ((System.Collections.Generic.List<BalorEditor.DataItem>)(resources.GetObject("isRegion.Collection")));
-			this.isRegion.Dock = System.Windows.Forms.DockStyle.Top;
-			this.isRegion.Location = new System.Drawing.Point(3, 3);
-			this.isRegion.Name = "isRegion";
-			this.isRegion.Size = new System.Drawing.Size(662, 30);
-			this.isRegion.TabIndex = 1;
-			this.isRegion.ItemSelectorIndexChanged += new BalorEditor.ItemSelector.ItemSelectorEventHandler(this.isRegion_ItemSelectorIndexChanged);
-			// 
 			// statusStrip1
 			// 
 			this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -445,6 +425,209 @@
 			this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
 			this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
 			this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+			// 
+			// splitContainer1
+			// 
+			this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+			this.splitContainer1.Location = new System.Drawing.Point(3, 30);
+			this.splitContainer1.Name = "splitContainer1";
+			// 
+			// splitContainer1.Panel1
+			// 
+			this.splitContainer1.Panel1.Controls.Add(this.worldDisplay1);
+			// 
+			// splitContainer1.Panel2
+			// 
+			this.splitContainer1.Panel2.Controls.Add(this.btnResetHeights);
+			this.splitContainer1.Panel2.Controls.Add(this.rbShallows);
+			this.splitContainer1.Panel2.Controls.Add(this.rbTent);
+			this.splitContainer1.Panel2.Controls.Add(this.rbOcean);
+			this.splitContainer1.Panel2.Controls.Add(this.rbCitadel);
+			this.splitContainer1.Panel2.Controls.Add(this.rbRiver);
+			this.splitContainer1.Panel2.Controls.Add(this.rbBurg);
+			this.splitContainer1.Panel2.Controls.Add(this.rbUnknown);
+			this.splitContainer1.Panel2.Controls.Add(this.rbFarmland);
+			this.splitContainer1.Panel2.Controls.Add(this.rbOak);
+			this.splitContainer1.Panel2.Controls.Add(this.rbPine);
+			this.splitContainer1.Panel2.Controls.Add(this.rbRock);
+			this.splitContainer1.Panel2.Controls.Add(this.rbGrassland);
+			this.splitContainer1.Size = new System.Drawing.Size(662, 480);
+			this.splitContainer1.SplitterDistance = 544;
+			this.splitContainer1.TabIndex = 2;
+			// 
+			// worldDisplay1
+			// 
+			this.worldDisplay1.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.worldDisplay1.Location = new System.Drawing.Point(0, 0);
+			this.worldDisplay1.Name = "worldDisplay1";
+			this.worldDisplay1.Size = new System.Drawing.Size(544, 480);
+			this.worldDisplay1.TabIndex = 0;
+			// 
+			// btnResetHeights
+			// 
+			this.btnResetHeights.Location = new System.Drawing.Point(3, 285);
+			this.btnResetHeights.Name = "btnResetHeights";
+			this.btnResetHeights.Size = new System.Drawing.Size(106, 23);
+			this.btnResetHeights.TabIndex = 12;
+			this.btnResetHeights.Text = "Reset All Heights";
+			this.btnResetHeights.UseVisualStyleBackColor = true;
+			this.btnResetHeights.Click += new System.EventHandler(this.btnResetHeights_Click);
+			// 
+			// rbShallows
+			// 
+			this.rbShallows.AutoSize = true;
+			this.rbShallows.Location = new System.Drawing.Point(12, 262);
+			this.rbShallows.Name = "rbShallows";
+			this.rbShallows.Size = new System.Drawing.Size(67, 17);
+			this.rbShallows.TabIndex = 11;
+			this.rbShallows.TabStop = true;
+			this.rbShallows.Text = "Shallows";
+			this.rbShallows.UseVisualStyleBackColor = true;
+			this.rbShallows.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// rbTent
+			// 
+			this.rbTent.AutoSize = true;
+			this.rbTent.Location = new System.Drawing.Point(12, 170);
+			this.rbTent.Name = "rbTent";
+			this.rbTent.Size = new System.Drawing.Size(47, 17);
+			this.rbTent.TabIndex = 7;
+			this.rbTent.TabStop = true;
+			this.rbTent.Text = "Tent";
+			this.rbTent.UseVisualStyleBackColor = true;
+			this.rbTent.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// rbOcean
+			// 
+			this.rbOcean.AutoSize = true;
+			this.rbOcean.Location = new System.Drawing.Point(12, 239);
+			this.rbOcean.Name = "rbOcean";
+			this.rbOcean.Size = new System.Drawing.Size(57, 17);
+			this.rbOcean.TabIndex = 10;
+			this.rbOcean.TabStop = true;
+			this.rbOcean.Text = "Ocean";
+			this.rbOcean.UseVisualStyleBackColor = true;
+			this.rbOcean.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// rbCitadel
+			// 
+			this.rbCitadel.AutoSize = true;
+			this.rbCitadel.Location = new System.Drawing.Point(12, 147);
+			this.rbCitadel.Name = "rbCitadel";
+			this.rbCitadel.Size = new System.Drawing.Size(57, 17);
+			this.rbCitadel.TabIndex = 6;
+			this.rbCitadel.TabStop = true;
+			this.rbCitadel.Text = "Citadel";
+			this.rbCitadel.UseVisualStyleBackColor = true;
+			this.rbCitadel.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// rbRiver
+			// 
+			this.rbRiver.AutoSize = true;
+			this.rbRiver.Location = new System.Drawing.Point(12, 216);
+			this.rbRiver.Name = "rbRiver";
+			this.rbRiver.Size = new System.Drawing.Size(50, 17);
+			this.rbRiver.TabIndex = 9;
+			this.rbRiver.TabStop = true;
+			this.rbRiver.Text = "River";
+			this.rbRiver.UseVisualStyleBackColor = true;
+			this.rbRiver.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// rbBurg
+			// 
+			this.rbBurg.AutoSize = true;
+			this.rbBurg.Location = new System.Drawing.Point(12, 124);
+			this.rbBurg.Name = "rbBurg";
+			this.rbBurg.Size = new System.Drawing.Size(47, 17);
+			this.rbBurg.TabIndex = 5;
+			this.rbBurg.TabStop = true;
+			this.rbBurg.Text = "Burg";
+			this.rbBurg.UseVisualStyleBackColor = true;
+			this.rbBurg.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// rbUnknown
+			// 
+			this.rbUnknown.AutoSize = true;
+			this.rbUnknown.Location = new System.Drawing.Point(12, 193);
+			this.rbUnknown.Name = "rbUnknown";
+			this.rbUnknown.Size = new System.Drawing.Size(54, 17);
+			this.rbUnknown.TabIndex = 8;
+			this.rbUnknown.TabStop = true;
+			this.rbUnknown.Text = "Marsh";
+			this.rbUnknown.UseVisualStyleBackColor = true;
+			this.rbUnknown.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// rbFarmland
+			// 
+			this.rbFarmland.AutoSize = true;
+			this.rbFarmland.Location = new System.Drawing.Point(12, 101);
+			this.rbFarmland.Name = "rbFarmland";
+			this.rbFarmland.Size = new System.Drawing.Size(68, 17);
+			this.rbFarmland.TabIndex = 4;
+			this.rbFarmland.TabStop = true;
+			this.rbFarmland.Text = "Farmland";
+			this.rbFarmland.UseVisualStyleBackColor = true;
+			this.rbFarmland.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// rbOak
+			// 
+			this.rbOak.AutoSize = true;
+			this.rbOak.Location = new System.Drawing.Point(12, 78);
+			this.rbOak.Name = "rbOak";
+			this.rbOak.Size = new System.Drawing.Size(45, 17);
+			this.rbOak.TabIndex = 3;
+			this.rbOak.TabStop = true;
+			this.rbOak.Text = "Oak";
+			this.rbOak.UseVisualStyleBackColor = true;
+			this.rbOak.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// rbPine
+			// 
+			this.rbPine.AutoSize = true;
+			this.rbPine.Location = new System.Drawing.Point(12, 55);
+			this.rbPine.Name = "rbPine";
+			this.rbPine.Size = new System.Drawing.Size(46, 17);
+			this.rbPine.TabIndex = 2;
+			this.rbPine.TabStop = true;
+			this.rbPine.Text = "Pine";
+			this.rbPine.UseVisualStyleBackColor = true;
+			this.rbPine.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// rbRock
+			// 
+			this.rbRock.AutoSize = true;
+			this.rbRock.Location = new System.Drawing.Point(12, 32);
+			this.rbRock.Name = "rbRock";
+			this.rbRock.Size = new System.Drawing.Size(51, 17);
+			this.rbRock.TabIndex = 1;
+			this.rbRock.TabStop = true;
+			this.rbRock.Text = "Rock";
+			this.rbRock.UseVisualStyleBackColor = true;
+			this.rbRock.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// rbGrassland
+			// 
+			this.rbGrassland.AutoSize = true;
+			this.rbGrassland.Location = new System.Drawing.Point(12, 9);
+			this.rbGrassland.Name = "rbGrassland";
+			this.rbGrassland.Size = new System.Drawing.Size(72, 17);
+			this.rbGrassland.TabIndex = 0;
+			this.rbGrassland.TabStop = true;
+			this.rbGrassland.Text = "Grassland";
+			this.rbGrassland.UseVisualStyleBackColor = true;
+			this.rbGrassland.CheckedChanged += new System.EventHandler(this.rbMaterialSelected);
+			// 
+			// isRegion
+			// 
+			this.isRegion.Collection = null;
+			this.isRegion.Dock = System.Windows.Forms.DockStyle.Top;
+			this.isRegion.Location = new System.Drawing.Point(3, 3);
+			this.isRegion.Name = "isRegion";
+			this.isRegion.Size = new System.Drawing.Size(662, 30);
+			this.isRegion.TabIndex = 1;
+			this.isRegion.ItemSelectorIndexChanged += new BalorEditor.ItemSelector.ItemSelectorEventHandler(this.isRegion_ItemSelectorIndexChanged);
 			// 
 			// Form1
 			// 
@@ -470,11 +653,13 @@
 			((System.ComponentModel.ISupportInitialize)(this.udLevel)).EndInit();
 			this.tabPage2.ResumeLayout(false);
 			this.tabPage2.PerformLayout();
-			this.splitContainer1.Panel1.ResumeLayout(false);
-			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-			this.splitContainer1.ResumeLayout(false);
 			this.statusStrip1.ResumeLayout(false);
 			this.statusStrip1.PerformLayout();
+			this.splitContainer1.Panel1.ResumeLayout(false);
+			this.splitContainer1.Panel2.ResumeLayout(false);
+			this.splitContainer1.Panel2.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+			this.splitContainer1.ResumeLayout(false);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -512,6 +697,19 @@
 		private ItemSelector isRegion;
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+		private System.Windows.Forms.RadioButton rbTent;
+		private System.Windows.Forms.RadioButton rbCitadel;
+		private System.Windows.Forms.RadioButton rbBurg;
+		private System.Windows.Forms.RadioButton rbFarmland;
+		private System.Windows.Forms.RadioButton rbOak;
+		private System.Windows.Forms.RadioButton rbPine;
+		private System.Windows.Forms.RadioButton rbRock;
+		private System.Windows.Forms.RadioButton rbGrassland;
+		private System.Windows.Forms.RadioButton rbShallows;
+		private System.Windows.Forms.RadioButton rbOcean;
+		private System.Windows.Forms.RadioButton rbRiver;
+		private System.Windows.Forms.RadioButton rbUnknown;
+		private System.Windows.Forms.Button btnResetHeights;
     }
 }
 

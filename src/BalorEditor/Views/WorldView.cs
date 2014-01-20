@@ -99,12 +99,13 @@ namespace BalorEditor.Views
 			Burg,
 			Citadel,
 			Tent = 7,
+			Marsh,
 			River = 9,
 			Ocean = 10,
 			Shallows = 11,
 		}
 
-		//public int Height { get { return _worldViewData[Offset(Field.Height)]; } set { _worldViewData[Offset(Field.Height)] = (byte)value; } }
+		public int TileImage { get { return _worldViewData[Offset(Field.Unknown0)]; } set { _worldViewData[Offset(Field.Unknown0)] = (byte)value; } }
 		public int Density { get { return _worldViewData[Offset(Field.Density)]; } set { _worldViewData[Offset(Field.Density)] = (byte)value; } }
 		/// <summary>
 		/// Looks like a partial mask.
@@ -131,6 +132,12 @@ namespace BalorEditor.Views
 				Unknown1 = _worldViewData[Offset(Field.Unknown1)],
 				Unknown2 = _worldViewData[Offset(Field.Unknown2)],
 			};
+		}
+
+		internal byte[] GetData()
+		{
+			//Clone and return;
+			return _worldViewData.ToArray();
 		}
 	}
 
