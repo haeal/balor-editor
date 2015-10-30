@@ -18,6 +18,7 @@ namespace BalorEditor
 		public Form1()
 		{
 			InitializeComponent();
+			EnableHeroEditingControls(false);
 		}
 
 		private HeroView _heroesList;
@@ -43,6 +44,7 @@ namespace BalorEditor
 			worldDisplay1.MouseOver += worldDisplay1_MouseOver;
 
 			LoadGameState();
+			EnableHeroEditingControls(true);
 		}
 
 		void worldDisplay1_MouseOver(object sender, CellInfo info)
@@ -215,6 +217,53 @@ namespace BalorEditor
 		{
 			btnTileTest_Click(null, null);
 			saveToolStripMenuItem_Click(null, null);
+		}
+
+		private void EnableHeroEditingControls(bool enabled)
+		{
+			saveToolStripMenuItem.Enabled = enabled;
+			gbSkills.Enabled = enabled;
+			button1.Enabled = enabled;
+			checkBox15.Enabled = enabled;
+			checkBox14.Enabled = enabled;
+			checkBox13.Enabled = enabled;
+			checkBox12.Enabled = enabled;
+			checkBox11.Enabled = enabled;
+			checkBox10.Enabled = enabled;
+			checkBox9.Enabled = enabled;
+			checkBox8.Enabled = enabled;
+			checkBox7.Enabled = enabled;
+			checkBox6.Enabled = enabled;
+			checkBox5.Enabled = enabled;
+			checkBox4.Enabled = enabled;
+			checkBox3.Enabled = enabled;
+			checkBox2.Enabled = enabled;
+			checkBox1.Enabled = enabled;
+			groupBox1.Enabled = enabled;
+			btnMaxStats.Enabled = enabled;
+			udCharm.Enabled = enabled;
+			udMind.Enabled = enabled;
+			udDex.Enabled = enabled;
+			udArms.Enabled = enabled;
+			cbPlayerOwned.Enabled = enabled;
+			udGroup.Enabled = enabled;
+			udLevel.Enabled = enabled;
+			udTileTester.Enabled = enabled;
+			btnTileTest.Enabled = enabled;
+			btnResetHeights.Enabled = enabled;
+			rbShallows.Enabled = enabled;
+			rbTent.Enabled = enabled;
+			rbOcean.Enabled = enabled;
+			rbCitadel.Enabled = enabled;
+			rbRiver.Enabled = enabled;
+			rbBurg.Enabled = enabled;
+			rbUnknown.Enabled = enabled;
+			rbFarmland.Enabled = enabled;
+			rbOak.Enabled = enabled;
+			rbPine.Enabled = enabled;
+			rbRock.Enabled = enabled;
+			rbGrassland.Enabled = enabled;
+			worldDisplay1.Enabled = enabled;
 		}
 	}
 }
