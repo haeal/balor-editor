@@ -18,7 +18,7 @@ namespace BalorEditor
 		public Form1()
 		{
 			InitializeComponent();
-			EnableHeroEditingControls(false);
+			EnableEditingControls(false);
 		}
 
 		private HeroView _heroesList;
@@ -44,7 +44,7 @@ namespace BalorEditor
 			worldDisplay1.MouseOver += worldDisplay1_MouseOver;
 
 			LoadGameState();
-			EnableHeroEditingControls(true);
+			EnableEditingControls(true);
 		}
 
 		void worldDisplay1_MouseOver(object sender, CellInfo info)
@@ -219,7 +219,7 @@ namespace BalorEditor
 			saveToolStripMenuItem_Click(null, null);
 		}
 
-		private void EnableHeroEditingControls(bool enabled)
+		private void EnableEditingControls(bool enabled)
 		{
 			saveToolStripMenuItem.Enabled = enabled;
 			gbSkills.Enabled = enabled;
